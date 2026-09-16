@@ -1,56 +1,34 @@
 #!/bin/bash
-# ==============================================================================
-# Práctica: Manipulación de Archivos y Directorios en Linux
-# Descripción: Automatización de creación, copia, listado y eliminación de archivos
-# ==============================================================================
 
-# Detener la ejecución si ocurre algún error imprevisto
-set -e
+# Entrar a la carpeta Documents
+cd ~/Documents
 
-# Definir la ruta base de trabajo en Documents
-WORK_DIR="$HOME/Documents"
-cd "$WORK_DIR"
+# 1. Crear carpetas iniciales
+mkdir practica1
+mkdir practica2
 
-echo "=== 1. Creando carpetas iniciales ==="
-mkdir -p practica1 practica2
-echo "Directorios practica1 y practica2 creados con éxito."
+# 2. Entrar a practica1 y crear el archivo
+cd practica1
+echo "Hola, este s un archivo de texto, el cual servira para aprender como crearelos" > Readme.txt
 
-echo -e "\n=== 2. Creando archivo de texto en practica1 ==="
-# Generamos el archivo de texto directamente sin requerir interfaz gráfica
-cat << 'EOF' > practica1/Readme.txt
-Hola, este s un archivo de texto, el cual servira para aprender como crearelos
-EOF
-echo "Archivo practica1/Readme.txt generado correctamente."
+# 3. Listar metadatos y permisos
+ls -l
 
-echo -e "\n=== 3. Listando metadatos y permisos del archivo ==="
-ls -l practica1/Readme.txt
+# 4. Copiar archivo a practica2
+cp ~/Documents/practica1/Readme.txt ~/Documents/practica2/
 
-echo -e "\n=== 4. Copiando archivo de practica1 a practica2 ==="
-cp practica1/Readme.txt practica2/
-echo "Archivo copiado a practica2/."
+# 5. Entrar a practica2, crear carpetas y el archivo interno
+cd ~/Documents/practica2
+mkdir vacia
+mkdir info
+cd info
+echo "Hola, este s un archivo de texto, el cual servira para aprender como crearelos" > Readme.txt
 
-echo -e "\n=== 5. Creando subdirectorios y archivo en practica2 ==="
-mkdir -p practica2/vacia practica2/info
+# 6. Copiar carpetas recursivamente a practica1
+cp -r ~/Documents/practica2/vacia ~/Documents/practica1/
+cp -r ~/Documents/practica2/info ~/Documents/practica1/
 
-# Generamos el segundo archivo de texto dentro de practica2/info/
-cat << 'EOF' > practica2/info/Readme.txt
-Hola, este s un archivo de texto, el cual servira para aprender como crearelos
-EOF
-echo "Estructura interna de practica2 completada."
-
-echo -e "\n=== 6. Copiando carpetas de forma recursiva a practica1 ==="
-# La opción -r replica la estructura completa del directorio
-cp -r practica2/vacia practica1/
-cp -r practica2/info practica1/
-echo "Carpetas 'vacia' e 'info' copiadas exitosamente a practica1/."
-
-echo -e "\n=== 7. Eliminando archivo y carpeta en practica1 ==="
-# Eliminamos el archivo Readme.txt de practica1
-rm practica1/Readme.txt
-echo "Archivo practica1/Readme.txt eliminado."
-
-# Eliminamos la carpeta info de forma recursiva (-r)
-rm -r practica1/info
-echo "Carpeta practica1/info eliminada."
-
-echo -e "\n=== Práctica completada satisfactoriamente ==="
+# 7. Entrar a practica1 y eliminar archivo y carpeta
+cd ~/Documents/practica1
+rm Readme.txt
+rm -r info
