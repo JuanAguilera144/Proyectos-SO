@@ -4,7 +4,7 @@
 *   **[codigos.sh](./Codigo%20y%20Scripts/codigos.sh)** — Script de Shell que contiene la lógica principal del servicio/demonio para la configuración e implementación en el sistema.
 
 ## 📁 Reporte
-*   **[Reporte Practica Demonio systemd](./Reporte/Reporte_Practica_Salud_Sistema%20.pdf)** — Documento en formato PDF que detalla el desarrollo, la metodología y los resultados de la práctica sobre el demonio administrado con `systemd`.
+*   **[Reporte Practica Salud Sistema](./Reporte/Reporte_Practica_Salud_Sistema.pdf)** — Documento en formato PDF que detalla el desarrollo, la metodología y los resultados de la práctica sobre la monitorización de salud del sistema.
 
 ## 📁 Terminal
 A continuación, se muestran las capturas de pantalla que documentan la ejecución de comandos y la verificación del servicio desde la terminal:
