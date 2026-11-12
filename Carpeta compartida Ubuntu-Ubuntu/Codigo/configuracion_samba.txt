@@ -1,0 +1,52 @@
+CARPETA COMPARTIDA UBUNTU - UBUNTU CON SAMBA
+============================================
+
+Equipos
+-------
+Servidor (Ubuntu 1): 192.168.1.20  -> tiene la carpeta ~/Compartida
+Cliente  (Ubuntu 2): 192.168.1.10  -> se conecta a la carpeta
+Mascara: 255.255.255.0 (/24)
+Sin usuario de Samba (acceso de invitado)
+
+
+1. Asignar la direccion IP (en cada equipo)
+-------------------------------------------
+Configuracion > Red > Cableada > engrane > IPv4 > Manual
+   Servidor: Direccion 192.168.1.20   Mascara 255.255.255.0
+   Cliente:  Direccion 192.168.1.10   Mascara 255.255.255.0
+Aplicar y apagar/encender la conexion.
+
+Comprobar la direccion:
+   ip a
+
+Comprobar la comunicacion (desde el cliente):
+   ping 192.168.1.20
+
+
+2. Instalar Samba (servidor)
+----------------------------
+   sudo apt update
+   sudo apt install samba
+
+
+3. Crear y compartir la carpeta (servidor)
+------------------------------------------
+   mkdir ~/Compartida
+
+Archivos > clic derecho en "Compartida" > Compartir en la red local
+   [x] Compartir esta carpeta
+   [x] Permitir a otras personas crear y eliminar archivos en esta carpeta
+   [x] Acceso de invitado
+
+
+4. Conectarse desde el cliente
+------------------------------
+Archivos > Otras ubicaciones > Conectar al servidor:
+   smb://192.168.1.20/compartida
+Conectar como invitado (anonimo).
+
+
+5. Prueba
+---------
+Desde el cliente se creo la carpeta "prueba2" dentro de la carpeta compartida
+y se comprobo que aparece tambien en ~/Compartida del servidor.

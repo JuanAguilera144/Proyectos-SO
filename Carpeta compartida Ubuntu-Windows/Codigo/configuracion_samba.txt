@@ -1,0 +1,59 @@
+CARPETA COMPARTIDA UBUNTU - WINDOWS CON SAMBA
+=============================================
+
+Equipos
+-------
+Servidor (Ubuntu):  192.168.1.10  -> tiene la carpeta ~/Compartida
+Cliente  (Windows): 192.168.1.20  -> se conecta a la carpeta
+Mascara: 255.255.255.0 (/24)
+Usuario de Samba: tilininsano
+
+
+1. Asignar la direccion IP
+--------------------------
+Ubuntu:
+   Configuracion > Red > Cableada > engrane > IPv4 > Manual
+   Direccion 192.168.1.10   Mascara 255.255.255.0
+   Comprobar: ip a
+
+Windows:
+   Configuracion > Red e Internet > Ethernet > Asignacion de IP > Editar > Manual > IPv4
+   Direccion 192.168.1.20   Mascara 255.255.255.0
+   Comprobar: ipconfig
+
+Comprobar la comunicacion (desde Windows):
+   ping 192.168.1.10
+
+
+2. Instalar Samba (Ubuntu)
+--------------------------
+   sudo apt update
+   sudo apt install samba
+
+
+3. Crear y compartir la carpeta (Ubuntu)
+----------------------------------------
+   mkdir ~/Compartida
+
+Archivos > clic derecho en "Compartida" > Compartir en la red local
+   [x] Compartir esta carpeta
+   [x] Permitir a otras personas crear y eliminar archivos en esta carpeta
+
+
+4. Crear el usuario de Samba (Ubuntu)
+-------------------------------------
+Windows 10/11 no permite entrar como invitado, por eso se usa un usuario:
+   sudo smbpasswd -a tilininsano
+
+
+5. Conectarse desde Windows
+---------------------------
+Windows + R:
+   \\192.168.1.10\Compartida
+Escribir el usuario tilininsano y su contrasena.
+
+
+6. Prueba
+---------
+Desde Windows se agregaron archivos y carpetas dentro de la carpeta compartida
+y se comprobo que aparecen tambien en ~/Compartida de Ubuntu.
